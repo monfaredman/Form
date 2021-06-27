@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire" class="w-1/2 m-auto">
+  <v-app id="inspire" class="w-1/2 m-auto" :class="{ backGray: boleanColor() }">
     <v-form ref="form" v-model="valid" lazy-validation class="formTotal">
       <div class="headline font-weight-bold mb-4">Login Form</div>
 
@@ -64,6 +64,9 @@ export default {
       };
       this.$store.dispatch("RegisterUser", RegisterData);
     },
+    boleanColor() {
+      return this.$store.state.backColor;
+    },
   },
 };
 </script>
@@ -81,5 +84,8 @@ export default {
 .btnForm {
   font-size: 15px;
   font-weight: 900;
+}
+.backGray {
+  background-color: #5d080825 !important;
 }
 </style>

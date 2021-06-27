@@ -6,14 +6,15 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: { backColor: false },
   getters: {
-    changeBackColor2(state) {
-      return (state.backColor = !state.backColor);
-    },
-    changeBackColor3(state) {
-      return (state.backColor = !state.backColor);
+    changeBackColor(state) {
+      return state.backColor;
     },
   },
-  mutations: {},
+  mutations: {
+    setBackground(state, val) {
+      state.backColor = val;
+    },
+  },
   actions: {
     RegisterUser(context, RegisterData) {
       axios

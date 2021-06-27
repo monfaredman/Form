@@ -1,5 +1,9 @@
 <template>
-  <v-app id="inspire" class="w-1/2 m-auto" :class="{ backGray: boleanColor() }">
+  <v-app
+    id="inspire"
+    class="w-1/2 m-auto"
+    :class="{ backGray: $store.state.backColor }"
+  >
     <v-form ref="form" v-model="valid" lazy-validation class="formTotal">
       <div class="headline font-weight-bold mb-4">Register Form</div>
 
@@ -92,9 +96,6 @@ export default {
         LastName: this.Lname,
       };
       this.$store.dispatch("RegisterUser", RegisterData);
-    },
-    boleanColor() {
-      return this.$store.state.backColor;
     },
   },
 };
