@@ -76,6 +76,7 @@ export default {
   background: #e0e0e0;
   box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
   padding: 50px;
+  margin: 52px auto;
 }
 .btnForm {
   font-size: 15px;

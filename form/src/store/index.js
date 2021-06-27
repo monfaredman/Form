@@ -4,8 +4,15 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 export const store = new Vuex.Store({
-  state: {},
-  getters: {},
+  state: { backColor: false },
+  getters: {
+    changeBackColor2(state) {
+      return (state.backColor = !state.backColor);
+    },
+    changeBackColor3(state) {
+      return (state.backColor = !state.backColor);
+    },
+  },
   mutations: {},
   actions: {
     RegisterUser(context, RegisterData) {
