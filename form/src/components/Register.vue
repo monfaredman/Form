@@ -38,7 +38,7 @@
         :disabled="!valid"
         color="success"
         class="mr-4 mt-3 font-black text-2xl btnForm"
-        @click="validate, RegisterUser"
+        @click="validate, RegisterUser()"
       >
         ثبت نام
       </v-btn>
@@ -57,7 +57,7 @@
 <script>
 export default {
   data: () => ({
-    valid: false,
+    valid: true,
     name: "",
     nameRules: [
       (v) => !!v || "Name is required",
@@ -84,15 +84,13 @@ export default {
       this.$refs.form.validate();
     },
     RegisterUser() {
-      if (this.valid) {
-        const RegisterData = {
-          email: this.email,
-          password: this.password,
-          name: this.name,
-          LastName: this.Lname,
-        };
-        this.$store.dispatch("RegisterUser", RegisterData);
-      }
+      const RegisterData = {
+        email: this.email,
+        password: this.password,
+        name: this.name,
+        LastName: this.Lname,
+      };
+      this.$store.dispatch("RegisterUser", RegisterData);
     },
   },
 };

@@ -22,7 +22,7 @@
         :disabled="!valid"
         color="success"
         class="mr-4 mt-3 font-black text-2xl btnForm"
-        @click="validate, RegisterUser"
+        @click="validate, RegisterUser()"
       >
         ورود
       </v-btn>
@@ -41,7 +41,7 @@
 <script>
 export default {
   data: () => ({
-    valid: false,
+    valid: true,
     email: "",
     emailRules: [
       (v) => !!v || "E-mail is required",
@@ -58,15 +58,11 @@ export default {
       this.$refs.form.validate();
     },
     RegisterUser() {
-      if (this.valid) {
-        const RegisterData = {
-          email: this.email,
-          password: this.password,
-        };
-        this.$store.dispatch("RegisterUser", RegisterData);
-      } else {
-        alert("Fill inputs!");
-      }
+      const RegisterData = {
+        email: this.email,
+        password: this.password,
+      };
+      this.$store.dispatch("RegisterUser", RegisterData);
     },
   },
 };
