@@ -1,0 +1,88 @@
+<template>
+  <v-app id="inspire" class="w-1/2 m-auto">
+    <v-form ref="form" v-model="valid" lazy-validation class="formTotal">
+      <div class="headline font-weight-bold mb-4">Login Form</div>
+
+      <v-text-field
+        v-model="email"
+        :rules="emailRules"
+        label="E-mail"
+        required
+      ></v-text-field>
+
+      <v-text-field
+        v-model="password"
+        type="password"
+        label="Password"
+        :rules="passwordRules"
+        required
+      ></v-text-field>
+
+      <v-btn
+        :disabled="!valid"
+        color="success"
+        class="mr-4 mt-3 font-black text-2xl btnForm"
+        @click="validate, RegisterUser"
+      >
+        ورود
+      </v-btn>
+
+      <v-btn
+        color="primary"
+        class="mr-4 mt-3 font-black text-2xl btnForm"
+        to="/"
+      >
+        ثبت نام
+      </v-btn>
+    </v-form>
+  </v-app>
+</template>
+
+<script>
+export default {
+  data: () => ({
+    valid: false,
+    email: "",
+    emailRules: [
+      (v) => !!v || "E-mail is required",
+      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+    ],
+    password: "",
+    passwordRules: [
+      (v) => !!v || "Password is required",
+      (v) => (v && v.length >= 5) || "Password must have 5+ characters",
+    ],
+  }),
+  methods: {
+    validate() {
+      this.$refs.form.validate();
+    },
+    RegisterUser() {
+      if (this.valid) {
+        const RegisterData = {
+          email: this.email,
+          password: this.password,
+        };
+        this.$store.dispatch("RegisterUser", RegisterData);
+      } else {
+        alert("Fill inputs!");
+      }
+    },
+  },
+};
+</script>
+
+<style lang="scss">
+.formTotal {
+  width: 40%;
+  margin: auto;
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  padding: 50px;
+}
+.btnForm {
+  font-size: 15px;
+  font-weight: 900;
+}
+</style>
