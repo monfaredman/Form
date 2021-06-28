@@ -14,7 +14,12 @@
       </v-btn>
     </template>
     <v-list>
-      <v-list-item v-for="(item, index) in items" :key="index">
+      <v-list-item
+        @mouseover="$store.commit('setBackground', true)"
+        @mouseout="$store.commit('setBackground', false)"
+        v-for="(item, index) in items"
+        :key="index"
+      >
         <v-btn width="100%" class="btnHeadDr">{{ item.title }}</v-btn>
       </v-list-item>
     </v-list>
