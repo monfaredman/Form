@@ -22,7 +22,7 @@
         :disabled="!valid"
         color="success"
         class="mr-4 mt-3 font-black text-2xl btnForm"
-        @click="validate, RegisterUser()"
+        @click="SignInUser()"
       >
         ورود
       </v-btn>
@@ -53,17 +53,22 @@ export default {
       (v) => (v && v.length >= 5) || "Password must have 5+ characters",
     ],
   }),
+  mounted() {
+    this.validate();
+  },
   methods: {
     validate() {
       this.$refs.form.validate();
     },
-    RegisterUser() {
-      const RegisterData = {
+    SignInUser() {
+      const SignInUserData = {
         email: this.email,
         password: this.password,
+        returnSecureToken: true,
       };
-      this.$store.dispatch("RegisterUser", RegisterData);
+      this.$store.dispatch("SignInUser", SignInUserData);
     },
+
     boleanColor() {
       return this.$store.state.backColor;
     },
